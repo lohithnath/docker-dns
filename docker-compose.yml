@@ -1,0 +1,15 @@
+version: '3'
+services:
+   dns:
+    image: dns
+    deploy:
+      replicas: 1
+      restart_policy:
+       condition: always
+    volumes:
+       - /root/polyglot-dnsfile/dns-files/rev:/var/named/rev
+       - /root/polyglot-dnsfile/dns-files/fwd:/var/named/fwd
+       - /root/polyglot-dnsfile/dns-files/resolv.conf:/etc/resolv.conf
+       - /root/polyglot-dnsfile/dns-files/named.conf:/etc/named.conf
+       - /root/polyglot-dnsfile/dns-files/named.rfc1912.zones:/etc/named.rfc1912.zones
+    network_mode: host
